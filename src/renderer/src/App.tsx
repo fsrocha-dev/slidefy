@@ -1,7 +1,4 @@
-import icons from './assets/icons.svg'
-import Versions from './components/Versions'
-
-function App(): JSX.Element {
+export function App() {
   return <h1>Ola Electron</h1>
 }
 
