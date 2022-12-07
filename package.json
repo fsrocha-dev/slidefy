@@ -22,7 +22,10 @@
   },
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
-    "@electron-toolkit/utils": "^1.0.2"
+    "@electron-toolkit/utils": "^1.0.2",
+    "clsx": "^1.2.1",
+    "cmdk": "^0.1.20",
+    "phosphor-react": "^1.4.1"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
