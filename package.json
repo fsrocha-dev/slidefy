@@ -23,6 +23,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
     "@electron-toolkit/utils": "^1.0.2",
+    "@radix-ui/react-collapsible": "^1.0.1",
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
     "electron-router-dom": "^1.0.5",
