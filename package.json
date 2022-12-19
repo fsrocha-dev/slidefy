@@ -25,7 +25,9 @@
     "@electron-toolkit/utils": "^1.0.2",
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
-    "phosphor-react": "^1.4.1"
+    "electron-router-dom": "^1.0.5",
+    "phosphor-react": "^1.4.1",
+    "react-router-dom": "^6.5.0"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
