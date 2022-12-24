@@ -35,6 +35,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
     "electron-router-dom": "^1.0.5",
+    "electron-store": "^8.1.0",
     "lowlight": "^2.8.0",
     "phosphor-react": "^1.4.1",
     "react-router-dom": "^6.5.0"
