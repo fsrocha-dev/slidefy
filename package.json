@@ -13,7 +13,7 @@
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
-    "dev": "electron-vite dev",
+    "dev": "electron-vite dev --watch",
     "build": "npm run typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
@@ -24,6 +24,7 @@
     "@electron-toolkit/preload": "^1.0.2",
     "@electron-toolkit/utils": "^1.0.2",
     "@radix-ui/react-collapsible": "^1.0.1",
+    "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.209",
     "@tiptap/extension-document": "^2.0.0-beta.209",
     "@tiptap/extension-highlight": "^2.0.0-beta.209",
     "@tiptap/extension-placeholder": "^2.0.0-beta.209",
@@ -33,6 +34,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
     "electron-router-dom": "^1.0.5",
+    "lowlight": "^2.8.0",
     "phosphor-react": "^1.4.1",
     "react-router-dom": "^6.5.0"
   },
@@ -53,6 +55,7 @@
     "postcss": "^8.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.57.1",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
     "vite": "^3.2.4"
