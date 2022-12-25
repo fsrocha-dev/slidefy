@@ -1,6 +1,7 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, shell } from 'electron'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
+import { createShortcuts } from './shortcuts'
 
 import * as path from 'node:path'
 
@@ -30,6 +31,8 @@ function createWindow(): void {
       sandbox: false,
     },
   })
+
+  createShortcuts(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
