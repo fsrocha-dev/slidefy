@@ -17,7 +17,17 @@ lowlight.registerLanguage('css', css)
 lowlight.registerLanguage('js', js)
 lowlight.registerLanguage('ts', ts)
 
-export function Editor() {
+export interface OnContentUpdatedParams {
+  title: string
+  content: string
+}
+
+interface EditorProps {
+  content: string
+  onContentUpdated: (params: OnContentUpdatedParams) => void
+}
+
+export function Editor({ content, onContentUpdated }: EditorProps) {
   const editor = useEditor({
     extensions: [
       Document.extend({
@@ -29,7 +39,7 @@ export function Editor() {
       Highlight,
       Typography,
       Placeholder.configure({
-        placeholder: 'Digite alo...',
+        placeholder: 'Type something...',
         emptyEditorClass:
           'before:content-[attr(data-placeholder)] before:text-gray-500 before:h-0 before:float-left before:pointer-events-none',
       }),
@@ -38,7 +48,16 @@ export function Editor() {
         defaultLanguage: 'js',
       }),
     ],
-    content: '<h1>Teste</h1>',
+    onUpdate: ({ editor }) => {
+      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups
+
+      const title = parsedContent?.title ?? 'Untitled'
+      const content = parsedContent?.content ?? ''
+
+      onContentUpdated({ title, content })
+    },
+    content,
     autofocus: 'end',
     editorProps: {
       attributes: {
