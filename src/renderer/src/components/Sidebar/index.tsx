@@ -3,7 +3,6 @@ import * as Navigation from './Navigation'
 import clsx from 'clsx'
 import { CaretDoubleLeft } from 'phosphor-react'
 import { CreatePage } from './CreatePage'
-import { Profile } from './Profile'
 import { Search } from './Search'
 import { useQuery } from '@tanstack/react-query'
 
@@ -44,12 +43,11 @@ export function Sidebar() {
           },
         )}
       >
-        <Profile />
         <Search />
 
         <Navigation.Root>
           <Navigation.Section>
-            <Navigation.SectionTitle>Workspace</Navigation.SectionTitle>
+            <Navigation.SectionTitle>Presentations</Navigation.SectionTitle>
             <Navigation.SectionContent>
               {data?.map((document) => {
                 return (
