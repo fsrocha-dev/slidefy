@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
-import { DotsThree } from 'phosphor-react'
 import { ReactNode } from 'react'
 
 interface LinkProps {
@@ -22,12 +21,6 @@ export function Link({ to, children }: LinkProps) {
       }}
     >
       <span className="truncate flex-1">{children}</span>
-
-      <div className="flex items-center h-full group-hover:visible ml-auto text-slidefy-100">
-        <button className="px-px rounded-sm hover:bg-slidefy-500">
-          <DotsThree weight="bold" className="h-4 w-4" />
-        </button>
-      </div>
     </NavLink>
   )
 }
