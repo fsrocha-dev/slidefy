@@ -45,11 +45,11 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
       }),
       CodeBlockLowlight.configure({
         lowlight,
-        defaultLanguage: 'js',
+        defaultLanguage: 'javascript',
       }),
     ],
     onUpdate: ({ editor }) => {
-      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const contentRegex = /(<h1>(?<title>.+?)<\/h1>(?<content>.+)?)/
       const parsedContent = editor.getHTML().match(contentRegex)?.groups
 
       const title = parsedContent?.title ?? 'Untitled'
