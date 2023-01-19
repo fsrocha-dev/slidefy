@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://www.electronjs.org",
+  "author": "frankrocha.dev",
+  "homepage": "https://www.slidefymd.com",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -34,11 +34,14 @@
     "@tiptap/starter-kit": "^2.0.0-beta.209",
     "clsx": "^1.2.1",
     "cmdk": "^0.1.20",
+    "dompurify": "^2.4.3",
     "electron-router-dom": "^1.0.5",
     "electron-store": "^8.1.0",
+    "html-react-parser": "^3.0.7",
     "lowlight": "^2.8.0",
     "phosphor-react": "^1.4.1",
-    "react-router-dom": "^6.5.0"
+    "react-router-dom": "^6.5.0",
+    "reveal.js": "^4.4.0"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
@@ -48,6 +51,7 @@
     "@types/node": "16.11.22",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "@types/reveal.js": "^4.4.0",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
     "electron": "^21.3.0",
@@ -58,6 +62,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.57.1",
+    "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
