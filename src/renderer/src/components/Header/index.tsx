@@ -1,8 +1,15 @@
 import clsx from 'clsx'
 import * as Collapsible from '@radix-ui/react-collapsible'
-import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
+import {
+  Presentation,
+  CaretDoubleRight,
+  TrashSimple,
+  PlayCircle,
+  XCircle,
+  CodeSimple,
+} from 'phosphor-react'
 import * as Breadcrumbs from './Breadcrumbs'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Document } from '@shared/types/ipc'
 
@@ -14,6 +21,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   const { id } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const isMacOS = process.platform === 'darwin'
 
@@ -31,6 +39,20 @@ export function Header({ isSidebarOpen }: HeaderProps) {
         },
       },
     )
+
+  const sendToSlide = () => {
+    navigate(`/presentation/${id}`)
+  }
+
+  const sendToDocument = () => {
+    navigate(`/documents/${id}`)
+  }
+
+  const activePresentation = () => {
+    const currentRoute = location.pathname.split('/')[1]
+    if (currentRoute === 'presentation') return true
+    return false
+  }
 
   return (
     <div
@@ -57,26 +79,50 @@ export function Header({ isSidebarOpen }: HeaderProps) {
         <>
           <Breadcrumbs.Root>
             <Breadcrumbs.Item>
-              <Code weight="bold" className="h-4 w-4 text-pink-500" />
-              Estrutura técnica
+              {activePresentation() ? (
+                <Presentation
+                  weight="bold"
+                  className="h-4 w-4 text-purple-500"
+                />
+              ) : (
+                <CodeSimple weight="bold" className="h-4 w-4 text-purple-500" />
+              )}
+              Presentations
             </Breadcrumbs.Item>
             <Breadcrumbs.Separator />
-            <Breadcrumbs.HiddenItems />
-            <Breadcrumbs.Separator />
-            <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
-            <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
+            <Breadcrumbs.Item isActive>Nome documento</Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
           <div className="inline-flex region-no-drag">
-            <button
-              onClick={() => deleteDocument()}
-              disabled={isDeletingDocument}
-              className="inline-flex items-center gap-1 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
-            >
-              <TrashSimple className="h-4 w-4" />
-              Delete
-            </button>
+            {activePresentation() ? (
+              <button
+                onClick={() => sendToDocument()}
+                disabled={isDeletingDocument}
+                className="inline-flex items-center gap-1 mr-3 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
+              >
+                <XCircle className="h-4 w-4" />
+                Close
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={() => sendToSlide()}
+                  disabled={isDeletingDocument}
+                  className="inline-flex items-center gap-1 mr-3 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
+                >
+                  <PlayCircle className="h-4 w-4" />
+                  Play
+                </button>
+                <button
+                  onClick={() => deleteDocument()}
+                  disabled={isDeletingDocument}
+                  className="inline-flex items-center gap-1 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
+                >
+                  <TrashSimple className="h-4 w-4" />
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         </>
       )}
