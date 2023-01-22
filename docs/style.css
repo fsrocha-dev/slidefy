@@ -67,7 +67,6 @@ footer {
 }
 
 footer a {
-  display: inline-block;
   height: 50px;
   padding: 0 24px;
   display: flex;
