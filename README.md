@@ -1,34 +1,36 @@
-# slidefy
+<p align="center">
+  <img src="./resources/icons/icon.png" width="140px" />
+</p>
 
-An Electron application with React and TypeScript
+<h1 align="center">Slidefy</h1>
+<p align="center">A slideshow focused on reading markdown files.</p>
 
-## Recommended IDE Setup
+<h3 align="center">
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+<br />
 
-## Project Setup
+# Contributing
 
-### Install
+Clone de repository, open its folder and install dependencies with:
 
-```bash
-$ npm install
+```sh
+npm install
 ```
 
-### Development
+Run it using:
 
-```bash
-$ npm run dev
+```sh
+npm run dev
 ```
 
-### Build
+# Author
 
-```bash
-# For windows
-$ npm run build:win
+👤 **Frank Rocha**
 
-# For macOS
-$ npm run build:mac
+- LinkedIn: [@frankrochadev](https://linkedin.com/in/frankrochadev)
+- Github: [@fsrocha-dev](https://github.com/fsrocha-dev)
+- Twitter: [@frankrocha_dev](https://twitter.com/frankrocha_dev)
 
-# For Linux
-$ npm run build:linux
-```
+## Show your support
+
+Give a ⭐️ if this project helped you!
