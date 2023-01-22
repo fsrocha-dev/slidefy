@@ -2,6 +2,29 @@
 @tailwind utilities;
 @tailwind components;
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  border: 2px solid transparent;
+}
+
 html { 
   overflow: hidden;
 }
+
