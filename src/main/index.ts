@@ -13,6 +13,7 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    center: true,
     show: false,
     autoHideMenuBar: true,
     backgroundColor: '#0b0d10',
@@ -61,7 +62,7 @@ function createWindow(): void {
 }
 
 if (process.platform === 'darwin') {
-  app.dock.setIcon(path.resolve(__dirname, 'icon.png'))
+  app.dock.setIcon(path.resolve(__dirname, 'icons/icon.png'))
 }
 
 // This method will be called when Electron has finished
