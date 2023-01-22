@@ -6,6 +6,7 @@ import { Document as IPCDocument } from '@shared/types/ipc'
 
 export function Document() {
   const { id } = useParams<{ id: string }>()
+
   const queryClient = useQueryClient()
 
   const { data, isFetching } = useQuery(['document', id], async () => {
@@ -51,7 +52,7 @@ export function Document() {
   }
 
   return (
-    <main className="flex-1 flex py-12 px-10 gap-8">
+    <main className="flex-1 flex py-12 px-10 gap-8 overflow-y-auto scroll-smooth">
       <section className="flex-1 flex flex-col items-center">
         {!isFetching && data && (
           <Editor
