@@ -7,7 +7,7 @@
 
 <h3 align="center">
   <!-- Version -->
-  <a href="https://github.com/maykbrito/mini-video-me/releases">
+  <a href="https://github.com/fsrocha-dev/slidefy/releases">
     <img alt="releases url" src="https://img.shields.io/github/v/release/fsrocha-dev/slidefy?style=for-the-badge&labelColor=1C1E26&color=0087FF">
   </a>  
   
