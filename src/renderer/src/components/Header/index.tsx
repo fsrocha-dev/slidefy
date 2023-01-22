@@ -12,6 +12,9 @@ import * as Breadcrumbs from './Breadcrumbs'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Document } from '@shared/types/ipc'
+import { useContext } from 'react'
+import { AppContext } from '../../contexts/AppContext'
+import { ConfirmModal } from '../ConfirmModal'
 
 interface HeaderProps {
   isSidebarOpen: boolean
@@ -22,6 +25,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const location = useLocation()
+  const { document, setIsSidebarOpen } = useContext(AppContext)
 
   const isMacOS = process.platform === 'darwin'
 
@@ -40,11 +44,17 @@ export function Header({ isSidebarOpen }: HeaderProps) {
       },
     )
 
+  const confirmDelete = () => {
+    deleteDocument()
+  }
+
   const sendToSlide = () => {
+    setIsSidebarOpen(false)
     navigate(`/presentation/${id}`)
   }
 
   const sendToDocument = () => {
+    setIsSidebarOpen(true)
     navigate(`/documents/${id}`)
   }
 
@@ -54,7 +64,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
     return false
   }
 
-  return (
+  return isSidebarOpen ? (
     <div
       id="header"
       className={clsx(
@@ -80,17 +90,14 @@ export function Header({ isSidebarOpen }: HeaderProps) {
           <Breadcrumbs.Root>
             <Breadcrumbs.Item>
               {activePresentation() ? (
-                <Presentation
-                  weight="bold"
-                  className="h-4 w-4 text-purple-500"
-                />
+                <Presentation weight="bold" className="h-4 w-4 text-blue-500" />
               ) : (
-                <CodeSimple weight="bold" className="h-4 w-4 text-purple-500" />
+                <CodeSimple weight="bold" className="h-4 w-4 text-blue-500" />
               )}
               Presentations
             </Breadcrumbs.Item>
             <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Nome documento</Breadcrumbs.Item>
+            <Breadcrumbs.Item isActive>{document.title}</Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
           <div className="inline-flex region-no-drag">
@@ -113,19 +120,37 @@ export function Header({ isSidebarOpen }: HeaderProps) {
                   <PlayCircle className="h-4 w-4" />
                   Play
                 </button>
-                <button
-                  onClick={() => deleteDocument()}
-                  disabled={isDeletingDocument}
-                  className="inline-flex items-center gap-1 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
+                <ConfirmModal
+                  title="Attention"
+                  description="Do you really want to delete the presentation?"
+                  buttonColor="red"
+                  buttonText="Yes"
+                  parentFunction={confirmDelete}
                 >
-                  <TrashSimple className="h-4 w-4" />
-                  Delete
-                </button>
+                  <button
+                    disabled={isDeletingDocument}
+                    className="inline-flex items-center gap-1 text-slidefy-100 text-sm hover:text-slidefy-50 disabled:opacity-60"
+                  >
+                    <TrashSimple className="h-4 w-4" />
+                    Delete
+                  </button>
+                </ConfirmModal>
               </>
             )}
           </div>
         </>
       )}
+    </div>
+  ) : (
+    <div className="absolute w-full top-0 right-0 z-50 flex justify-end py-[1.225rem] px-2 region-drag">
+      <button
+        onClick={() => sendToDocument()}
+        disabled={isDeletingDocument}
+        className="inline-flex bg-slidefy-600 opacity-10 hover:opacity-100 transition ease-in-out delay-150 px-2 py-1 rounded-lg items-center gap-1 mr-3 text-slidefy-100 text-sm hover:text-slidefy-50"
+      >
+        <XCircle className="h-4 w-4" />
+        Close
+      </button>
     </div>
   )
 }
