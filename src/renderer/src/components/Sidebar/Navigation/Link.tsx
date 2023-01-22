@@ -1,15 +1,23 @@
 import clsx from 'clsx'
 import { NavLink } from 'react-router-dom'
-import { ReactNode } from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../../../contexts/AppContext'
 
 interface LinkProps {
   to: string
-  children: ReactNode
+  children: string
 }
 
 export function Link({ to, children }: LinkProps) {
+  const { setDocument } = useContext(AppContext)
+
+  const setTitleDocumentState = () => {
+    setDocument({ title: children })
+  }
+
   return (
     <NavLink
+      onClick={() => setTitleDocumentState()}
       to={to}
       className={({ isActive }) => {
         return clsx(
