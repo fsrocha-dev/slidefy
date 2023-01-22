@@ -2,7 +2,7 @@
   "name": "slidefy",
   "productName": "Slidefy",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "A slideshow focused on reading markdown files.",
   "main": "./out/main/index.js",
   "author": "frankrocha.dev",
   "homepage": "https://www.slidefymd.com",
@@ -18,7 +18,8 @@
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "electron-vite build && electron-builder --mac --config",
-    "build:linux": "electron-vite build && electron-builder --linux --config"
+    "build:linux": "electron-vite build && electron-builder --linux --config",
+    "release": "electron-builder --publish always"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
@@ -43,6 +44,8 @@
     "dompurify": "^2.4.3",
     "electron-router-dom": "^1.0.5",
     "electron-store": "^8.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "html-react-parser": "^3.0.7",
     "lowlight": "^2.8.0",
     "phosphor-react": "^1.4.1",
@@ -65,8 +68,6 @@
     "electron-vite": "^1.0.14",
     "eslint": "^8.28.0",
     "postcss": "^8.4.19",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "sass": "^1.57.1",
     "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.2.4",
