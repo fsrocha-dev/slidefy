@@ -40,6 +40,7 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
 
     const title = parsedContent?.title ?? 'Untitled'
     const content = parsedContent?.content ?? ''
+
     setDocument({ title })
     return { title, content }
   }

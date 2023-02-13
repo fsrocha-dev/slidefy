@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './styles/reveal.css'
 import './styles/black.css'
 import './styles/dracula.css'
@@ -7,8 +7,9 @@ import Slide from './Slide'
 
 export function SlideShow({ markdownData }) {
   const [slides, setSlides] = useState<any[]>([])
+  const dataFetchedRef = useRef(false)
 
-  const decode = (str) => {
+  const decode = (str: string) => {
     const txt = document.createElement('textarea')
 
     txt.innerHTML = str
@@ -16,19 +17,34 @@ export function SlideShow({ markdownData }) {
     return txt.value
   }
 
-  const getSectionConfigs = (section, index) => {
+  const getSections = (section: string, index: number) => {
+    let slideConfigs = {}
     const decodedSection = decode(section)
+
+    slideConfigs = getSectionConfig(decodedSection)
+
+    const sectionWithoutComments = removeSectionComments(decodedSection)
+
+    setSlides((oldArray) => [
+      ...oldArray,
+      <Slide {...slideConfigs} key={index}>
+        {sectionWithoutComments}
+      </Slide>,
+    ])
+  }
+
+  const getSectionConfig = (decodedSection: string) => {
+    const configs = {}
 
     const regexGetCommentConfigs = /(<p><!—(?<configs>.+?)—><\/p>)/
     const slideConfig = decodedSection.match(regexGetCommentConfigs)?.groups
-    if (slideConfig && slideConfig?.configs.includes('.slide')) {
+
+    if (slideConfig?.configs.includes('.slide')) {
       const slideConfigProrpeties = slideConfig?.configs
         .replace(' .slide:', '')
         .trim()
 
       const splitedProperties = slideConfigProrpeties?.split(' ')
-      const slideProperties = {}
-      let sectionWithoutConfig = ''
 
       if (splitedProperties.length > 0) {
         splitedProperties.forEach((p) => {
@@ -36,35 +52,40 @@ export function SlideShow({ markdownData }) {
           const key = keyValue[0].replace(/[”"'“]/gi, '')
           const value = keyValue[1].replace(/[”"'“]/gi, '')
 
-          slideProperties[key] = value
+          configs[key] = value
         })
-
-        sectionWithoutConfig = decodedSection.replace(
-          /(<p><!—(.+?)—><\/p>)/,
-          '',
-        )
       }
-
-      return (
-        <Slide {...slideProperties} key={index}>
-          {sectionWithoutConfig}
-        </Slide>
-      )
     }
-    return <Slide key={index}>{section}</Slide>
+    return configs
+  }
+
+  const removeSectionComments = (decodedSection: string) => {
+    const sectionWithoutConfig = decodedSection.replace(
+      /(<p><!— .slide:(.+?)—><\/p>)/i,
+      '',
+    )
+
+    return sectionWithoutConfig
   }
 
   useEffect(() => {
-    const splitedSections = markdownData.content?.split('<hr>')
+    if (dataFetchedRef.current) return
+    dataFetchedRef.current = true
 
-    splitedSections?.forEach((item, index) => {
-      setSlides((oldArray) => [...oldArray, getSectionConfigs(item, index)])
-    })
-  }, [markdownData.content])
+    const createSlides = () => {
+      const splitedSections = markdownData.content?.split('<hr>')
+
+      splitedSections?.forEach((item, index) => {
+        getSections(item, index)
+      })
+    }
+
+    createSlides()
+  })
 
   return (
     <main className="flex gap-8 h-full w-full">
-      <Deck>{slides}</Deck>
+      {slides && <Deck>{slides}</Deck>}
     </main>
   )
 }
