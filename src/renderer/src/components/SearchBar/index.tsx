@@ -44,7 +44,7 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
         <MagnifyingGlass className="w-5 h-5" />
         <Command.Input
           autoFocus
-          placeholder="Buscar documentos..."
+          placeholder="Search documents..."
           className="w-full bg-transparent focus:outline-none text-sm text-slidefy-50 placeholder:text-slidefy-200"
         />
       </div>
