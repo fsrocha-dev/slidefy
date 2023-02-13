@@ -19,6 +19,14 @@
 
 <br />
 
+# Presentation
+
+<p align="center">
+  <img src="./resources/gifs/slidefy-usage-example.gif" />
+</p>
+
+<br />
+
 # Installation
 
 - [Download](https://github.com/fsrocha-dev/slidefy/releases)
