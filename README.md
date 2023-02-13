@@ -51,6 +51,12 @@ After running the app, you can create a new document in which you must follow th
       <td>Open search document bar</td>
       <td>Yes</td>
     </tr>
+    <tr>
+      <td><kbd>esc</kbd></td>
+      <td><kbd>esc</kbd></td>
+      <td>Close current presentation</td>
+      <td>Yes</td>
+    </tr>
   </tbody>
 </table>
 

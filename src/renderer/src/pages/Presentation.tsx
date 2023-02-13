@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { SlideShow } from '../modules/reveal'
 
+interface IMarkdownData {
+  id: string
+  content: string
+  title: string
+}
+
 export function Presentation() {
   const { id } = useParams<{ id: string }>()
-  const [markdownData, setMarkdownData] = useState(
-    {} as { id: string; content: string; title: string },
-  )
-
+  const [markdownData, setMarkdownData] = useState<IMarkdownData | null>(null)
   useQuery(
     ['document', id],
     async () => {
@@ -21,7 +24,7 @@ export function Presentation() {
 
   return (
     <main className="flex gap-8 h-full w-full">
-      <SlideShow markdownData={markdownData} />
+      {markdownData && <SlideShow markdownData={markdownData} />}
     </main>
   )
 }

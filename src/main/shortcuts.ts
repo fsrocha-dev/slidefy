@@ -5,6 +5,9 @@ export function createShortcuts(window: BrowserWindow) {
     globalShortcut.register('CommandOrControl+N', () => {
       window.webContents.send('new-document')
     })
+    globalShortcut.register('Escape', () => {
+      window.webContents.send('close-document')
+    })
   })
 
   app.on('browser-window-blur', () => {

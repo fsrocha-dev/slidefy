@@ -5,5 +5,6 @@ export const IPC = {
     CREATE: 'documents: create',
     SAVE: 'documents: save',
     DELETE: 'documents: delete',
+    CLOSE: 'documents: close',
   },
 }

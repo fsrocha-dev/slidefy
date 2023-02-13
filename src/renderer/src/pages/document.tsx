@@ -39,7 +39,7 @@ export function Document() {
 
   const initialContent = useMemo(() => {
     if (data) {
-      return `<h1>${data.title}</h1>${data.content ?? '<p></p>'}`
+      return `<h1>${data.title}</h1>${data.content ?? ''}`
     }
     return ''
   }, [data])
