@@ -12,7 +12,7 @@ import * as Breadcrumbs from './Breadcrumbs'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Document } from '@shared/types/ipc'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AppContext } from '../../contexts/AppContext'
 import { ConfirmModal } from '../ConfirmModal'
 
@@ -63,6 +63,18 @@ export function Header({ isSidebarOpen }: HeaderProps) {
     if (currentRoute === 'presentation') return true
     return false
   }
+
+  useEffect(() => {
+    function closeCurrentDocument() {
+      sendToDocument()
+    }
+
+    const unsubscribe = window.api.closeDocument(closeCurrentDocument)
+
+    return () => {
+      unsubscribe()
+    }
+  }, [sendToDocument])
 
   return isSidebarOpen ? (
     <div

@@ -5,7 +5,7 @@ import Highlight from 'reveal.js/plugin/highlight/highlight'
 const Deck = ({ children }) => {
   useEffect(() => {
     const deck = new Reveal()
-    deck.initialize({ plugins: [Highlight] })
+    deck.initialize({ plugins: [Highlight], overview: false })
   })
 
   return (

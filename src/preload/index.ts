@@ -39,6 +39,13 @@ const api = {
       ipcRenderer.off('new-document', callback)
     }
   },
+  closeDocument(callback: () => void) {
+    ipcRenderer.on('close-document', callback)
+
+    return () => {
+      ipcRenderer.off('close-document', callback)
+    }
+  },
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
