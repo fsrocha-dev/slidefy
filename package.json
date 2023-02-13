@@ -1,7 +1,7 @@
 {
   "name": "slidefy",
   "productName": "Slidefy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A slideshow focused on reading markdown files.",
   "main": "./out/main/index.js",
   "author": "frankrocha.dev",
